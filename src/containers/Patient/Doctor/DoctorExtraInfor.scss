@@ -1,0 +1,92 @@
+.doctor-extra-infor-container {
+    padding-left: 15px;
+    border-left: 1px solid #eee;
+
+    .content-up {
+        .text-address {
+            color: #666;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+        }
+        .name-clinic {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            padding-bottom: 6px;
+        }
+        .detail-address {
+            font-size: 13px;
+            color: #333;
+        }
+    }
+
+    .content-down {
+        border-top: 1px solid #eee;
+        margin-top: 10px;
+        padding-top: 10px;
+
+        .short-infor {
+            .title-price {
+                color: #666;
+                font-weight: 600;
+                font-size: 15px;
+                text-transform: uppercase;
+                padding-bottom: 6px;
+            }
+            .currency {
+                margin: 0 4px;
+                color: #666;
+                font-size: 14px;
+            }
+
+            .show-detail {
+                color: #45c3d2;
+                cursor: pointer;
+            }
+        }
+        .title-price {
+            color: #666;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+        }
+        .detail-infor {
+            border: 1px solid #ddd;
+            padding: 4px;
+            background-color: #f8f8f8;
+            .price {
+                color: #333;
+                .right {
+                    font-size: 13px;
+
+                    float: right;
+                }
+            }
+            .note {
+                font-size: 13px;
+                color: #666;
+                padding-right: 66px;
+            }
+        }
+        .payment {
+            font-size: 15px;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 4px;
+            background-color: #eee;
+        }
+
+        .hide-price {
+            margin: 10px 0;
+
+            span {
+                cursor: pointer;
+                font-size: 14px;
+                color: #45c3d2;
+            }
+        }
+    }
+}
