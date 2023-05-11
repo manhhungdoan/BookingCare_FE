@@ -73,12 +73,12 @@ class HomeHeader extends Component {
                                 >Đăng nhập</Button>
                             </Space>
 
-                            {/* <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
                                 <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
                             </div>
                             <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
                                 <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 </div>
