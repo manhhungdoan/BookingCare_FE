@@ -31,6 +31,8 @@ class DetailClinic extends Component {
                 location: 'ALL',
             });
 
+            console.log(res)
+
             if (res && res.errCode === 0) {
                 let data = res.data;
                 let arrDoctorId = [];
@@ -51,17 +53,18 @@ class DetailClinic extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {}
+    async componentDidUpdate(prevProps, prevState, snapshot) { }
 
     render() {
         let { arrDoctorId, dataDetailClinic } = this.state;
+        console.log('arr doctr', arrDoctorId)
         let { language } = this.props;
 
         return (
             <>
                 <HomeHeader />
                 <div className="detail-specialty-container">
-                    <div className="description-specialty">
+                    <div className="description-specialty mb-3">
                         {dataDetailClinic && !_.isEmpty(dataDetailClinic) && (
                             <>
                                 <div>{dataDetailClinic.name}</div>
@@ -69,9 +72,9 @@ class DetailClinic extends Component {
                             </>
                         )}
                     </div>
-                    <div className="content-specialty">
+                    <div className="content-specialty mt-3">
                         {arrDoctorId &&
-                            arrDoctorId.length > 0 &&
+                            arrDoctorId.length > 0 ?
                             arrDoctorId.map((item, index) => {
                                 return (
                                     <div className="each-doctor" key={index}>
@@ -95,7 +98,10 @@ class DetailClinic extends Component {
                                         </div>
                                     </div>
                                 );
-                            })}
+                            })
+                            :
+                            <h4 className='text-muted'>Không có thông tin bác sĩ</h4>
+                        }
                     </div>
                 </div>
             </>

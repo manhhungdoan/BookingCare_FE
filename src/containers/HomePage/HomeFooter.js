@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { Space } from 'antd';
 
 class HomeFooter extends Component {
     render() {
         return (
-            <div className="home-footer">
-                <p>
-                    &copy; 2023 Người Của Công Chúng, More information, please visit my youtube channel
+            <div className="home-footer py-2">
+                <Space>
+                    &copy; 2023 Đoàn Mạnh Hùng - Đại Học Công Nghiệp Hà Nội
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href="https://github.com/duongishandsome/Fullstack-front-end-reactjs-bookingcare"
+                        href="https://github.com/manhhungdoan"
                     >
-                        {' '}
-                        &#8594; Click here &#8592;
+                        Github
                     </a>
-                </p>
+                </Space>
             </div>
         );
     }

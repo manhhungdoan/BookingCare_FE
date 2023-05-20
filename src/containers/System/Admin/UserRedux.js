@@ -205,8 +205,8 @@ class UserRedux extends Component {
 
         let { email, password, firstName, lastName, phoneNumber, address, gender, position, role } = this.state;
         return (
-            <div className="user-redux-container">
-                <div className="title">Quản lý người dùng</div>
+            <div className="user-redux-container container">
+                <div className="title text-primary">Quản lý người dùng</div>
                 <div className="user-redux-body">
                     <div className="container">
                         <div className="row">
@@ -240,7 +240,7 @@ class UserRedux extends Component {
                             </div>
                             <div className="col-3">
                                 <label>
-                                    <FormattedMessage id="manage-user.first-name" />
+                                    <FormattedMessage id="manage-user.last-name" />
                                 </label>
                                 <input
                                     type="text"
@@ -251,7 +251,7 @@ class UserRedux extends Component {
                             </div>
                             <div className="col-3">
                                 <label>
-                                    <FormattedMessage id="manage-user.last-name" />
+                                    <FormattedMessage id="manage-user.first-name" />
                                 </label>
                                 <input
                                     type="text"

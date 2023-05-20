@@ -7,6 +7,7 @@ import Slider from 'react-slick';
 import { FormattedMessage } from 'react-intl';
 import { Redirect } from 'react-router';
 import { withRouter } from 'react-router';
+import { FloatButton } from 'antd';
 
 class OutStandingDoctor extends Component {
     constructor(props) {
@@ -32,9 +33,15 @@ class OutStandingDoctor extends Component {
             this.props.history.push(`/detail-doctor/${doctor.id}`);
         }
     };
+    handleViewMore = () => {
+        if (this.props.history) {
+            this.props.history.push(`/top-doctors/`);
+        }
+    }
 
     render() {
         let arrDoctors = this.state.arrDoctors;
+        console.log('arr', arrDoctors)
         let { language } = this.props;
         return (
             <div className="section-share section-outstanding-doctor">
@@ -43,7 +50,7 @@ class OutStandingDoctor extends Component {
                         <span className="title-section">
                             <FormattedMessage id="homepage.outstanding-doctor" />
                         </span>
-                        <button className="btn-section">
+                        <button className="btn-section" onClick={() => this.handleViewMore()}>
                             <FormattedMessage id="homepage.more-infor" />
                         </button>
                     </div>
@@ -72,8 +79,8 @@ class OutStandingDoctor extends Component {
                                                     ></div>
                                                 </div>
                                                 <div className="position text-center">
-                                                    <div>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
-                                                    <div>Cơ xương khớp</div>
+                                                    <div className='font-weight-bold'>{language === LANGUAGES.VI ? nameVi : nameEn}</div>
+                                                    <div className='mt-1 text-muted'>{item.phoneNumber}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,6 +89,7 @@ class OutStandingDoctor extends Component {
                         </Slider>
                     </div>
                 </div>
+
             </div>
         );
     }

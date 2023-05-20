@@ -50,9 +50,9 @@ class ProfileDoctor extends Component {
                 language === LANGUAGES.VI
                     ? moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
                     : moment
-                          .unix(+dataTime.date / 1000)
-                          .locale('en')
-                          .format('ddd - MM/DD/YYYY');
+                        .unix(+dataTime.date / 1000)
+                        .locale('en')
+                        .format('ddd - MM/DD/YYYY');
             return (
                 <>
                     <div>
@@ -81,8 +81,17 @@ class ProfileDoctor extends Component {
                 <div className="intro-doctor">
                     <div
                         className="content-left"
-                        style={{ backgroundImage: `url(${dataProfile.image ? dataProfile.image : ''})` }}
-                    ></div>
+                    // style={{ backgroundImage: `url($)` }}
+                    >
+                        <div className='image'>
+                            <img src={dataProfile.image ? dataProfile.image : ''} alt=''></img>
+                        </div>
+                        {iShowLinkDetail === true && (
+                            <div className="view-detail-doctor mt-2">
+                                <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+                            </div>
+                        )}
+                    </div>
                     <div className="content-right">
                         <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                         <div className="down">
@@ -98,11 +107,7 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-                {iShowLinkDetail === true && (
-                    <div className="view-detail-doctor">
-                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
-                    </div>
-                )}
+
 
                 {isShowPrice === true && (
                     <div className="price">

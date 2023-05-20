@@ -36,6 +36,8 @@ class ManagePatient extends Component {
             date: formattedDate,
         });
 
+        console.log("check res", res)
+
         if (res && res.errCode === 0) {
             this.setState({
                 dataPatient: res.data,
@@ -43,7 +45,7 @@ class ManagePatient extends Component {
         }
     };
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {}
+    async componentDidUpdate(prevProps, prevState, snapshot) { }
 
     handleOnChangeDatePicker = (date) => {
         this.setState(
@@ -84,7 +86,7 @@ class ManagePatient extends Component {
         this.setState({
             isShowLoading: true,
         });
-        
+
         let res = await postSendRemedy({
             ...dataChild,
             doctorId: dataModal.doctorId,
@@ -117,7 +119,7 @@ class ManagePatient extends Component {
             <>
                 <LoadingOverlay active={this.state.isShowLoading} spinner text="Loading...">
                     <div className="manage-patient-container">
-                        <div className="m-p-title">
+                        <div className="m-p-title text-primary">
                             <FormattedMessage id="menu.doctor.manage-patient" />
                         </div>
                         <div className="manage-patient-body row">
@@ -138,6 +140,7 @@ class ManagePatient extends Component {
                                             <th>Họ tên</th>
                                             <th>Địa chỉ</th>
                                             <th>Giới tính</th>
+                                            <th>Trạng thái</th>
                                             <th>Actions</th>
                                         </tr>
                                         {dataPatient && dataPatient.length > 0 ? (
@@ -158,12 +161,29 @@ class ManagePatient extends Component {
                                                         <td>{item.patientData.address}</td>
                                                         <td>{gender}</td>
                                                         <td>
-                                                            <button
-                                                                className="m-p-btn-confirm"
-                                                                onClick={() => this.handleBtnConfirm(item)}
-                                                            >
-                                                                Xác nhận
-                                                            </button>
+                                                            {
+                                                                item.statusId == 'S1' ?
+                                                                    <span>Chưa xác nhận</span>
+                                                                    : item.statusId == 'S2' ?
+                                                                        <span>Đã xác nhận</span>
+                                                                        :
+                                                                        item.statusId == 'S3' ?
+                                                                            <span>Đã khám</span>
+                                                                            : <span>Không đến</span>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            {
+
+                                                                item.statusId == 'S2' &&
+                                                                <button
+                                                                    className="m-p-btn-confirm"
+                                                                    onClick={() => this.handleBtnConfirm(item)}
+                                                                >
+                                                                    Xác nhận - Gửi hoá đơn
+                                                                </button>
+
+                                                            }
                                                         </td>
                                                     </tr>
                                                 );

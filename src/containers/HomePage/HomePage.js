@@ -12,6 +12,7 @@ import OutStandingDoctor from './Section/OutStandingDoctor';
 import HandBook from './Section/HandBook';
 import About from './Section/About';
 import HomeFooter from './HomeFooter';
+import { FloatButton } from 'antd';
 
 class HomePage extends Component {
     render() {
@@ -27,10 +28,12 @@ class HomePage extends Component {
                 <HomeHeader isShowBanner={true} />
                 <Specialty settings={settings} />
                 <OutStandingDoctor settings={settings} />
+
                 <MedicalFacility settings={settings} />
-                <HandBook settings={settings} />
+                {/* <HandBook settings={settings} /> */}
                 <About />
                 <HomeFooter />
+
             </div>
         );
     }

@@ -66,7 +66,7 @@ class DetailSpecialty extends Component {
         }
     }
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {}
+    async componentDidUpdate(prevProps, prevState, snapshot) { }
 
     handleOnChangeSelect = async (e) => {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
@@ -115,14 +115,17 @@ class DetailSpecialty extends Component {
                         <div className="search-sp-doctor">
                             <select onChange={(e) => this.handleOnChangeSelect(e)}>
                                 {listProvince &&
-                                    listProvince.length > 0 &&
+                                    listProvince.length > 0 ?
                                     listProvince.map((item, index) => {
                                         return (
                                             <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                             </option>
                                         );
-                                    })}
+                                    })
+                                    :
+                                    <h4 className='text-muted'>Không có thông tin bác sĩ</h4>
+                                }
                             </select>
                         </div>
                         {arrDoctorId &&

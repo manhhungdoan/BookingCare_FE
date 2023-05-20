@@ -5,9 +5,19 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { withRouter } from 'react-router';
-import { Button, Space } from 'antd';
+import { Button, Collapse, FloatButton, Space } from 'antd';
+import { postSearch } from '../../services/userService';
 
 class HomeHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            listDoctors: [],
+            listClinics: [],
+            listSpecialty: [],
+            isShowResult: false,
+        };
+    }
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
     };
@@ -17,10 +27,31 @@ class HomeHeader extends Component {
             this.props.history.push(`/home`);
         }
     };
+
+    handleSearch = async (e) => {
+        if (e.key == 'Enter') {
+            this.setState(
+                {
+                    isShowResult: true
+                }
+            )
+            let res = await postSearch(e.target.value)
+            this.setState({
+                listDoctors: res.doctors,
+                listClinics: res.clinics,
+                listSpecialty: res.specializations,
+            })
+        }
+    }
+    handleViewDetailDoctor = (doctor) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-doctor/${doctor.id}`);
+        }
+    };
     render() {
         let language = this.props.language;
         return (
-            <>
+            <div>
                 <div className="home-header-container">
                     <div className="home-header-content">
                         <div className="left-content">
@@ -61,11 +92,14 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className="right-content">
+
                             <Space>
-                                <div className="support">
-                                    <i className="fas fa-question-circle"></i>
-                                    <FormattedMessage id="home-header.support" />
+                                {/* <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
+                                    <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
                                 </div>
+                                <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
+                                    <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
+                                </div> */}
                                 <Button
                                     type='primary'
                                     className='btn-secondary-outline'
@@ -73,12 +107,7 @@ class HomeHeader extends Component {
                                 >Đăng nhập</Button>
                             </Space>
 
-                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}>
-                                <span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
-                            </div>
-                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}>
-                                <span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -92,9 +121,55 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="banner.title2" />
                             </div>
                             <div className="search">
-                                <i className="fas fa-search"></i>
-                                <input type="text" placeholder="Tìm bệnh viện" />
+                                <i className="fas fa-search" onClick={() => this.setState({ isShowResult: false })}></i>
+                                <input type="text" placeholder="Tìm bệnh viện, chuyên khoa, bác sĩ..." onKeyDown={this.handleSearch} />
+                                <div className='result'>
+                                    {
+                                        this.state.isShowResult &&
+                                        <Collapse defaultActiveKey={[1, 2, 3]}>
+                                            <Collapse.Panel header='Bác sĩ' key={1}>
+                                                {this.state.listDoctors.length > 0 ?
+                                                    this.state.listDoctors.map((item, index) => {
+                                                        return (
+                                                            <Button
+                                                                key={index}
+                                                                onClick={() => this.handleViewDetailDoctor(item)}
+                                                            >
+                                                                {`${item.firstName} ${item.lastName}`
+                                                                }</Button>
+                                                        )
+                                                    })
+                                                    :
+                                                    "Không có thông tin bác sĩ"
+                                                }
+                                            </Collapse.Panel>
+                                            <Collapse.Panel header='Chuyên khoa' key={2}>
+                                                {this.state.listSpecialty.length > 0 ?
+                                                    this.state.listSpecialty.map((item, index) => {
+                                                        return (
+                                                            <Button key={index}>{item.name}</Button>
+                                                        )
+                                                    })
+                                                    :
+                                                    "Không có thông tin chuyên khoa"
+                                                }
+                                            </Collapse.Panel>
+                                            <Collapse.Panel header='Cơ sở y tế' key={3}>
+                                                {this.state.listClinics.length > 0 ?
+                                                    this.state.listClinics.map((item, index) => {
+                                                        return (
+                                                            <Button key={index}>{item.name}</Button>
+                                                        )
+                                                    })
+                                                    :
+                                                    "Không có thông tin cơ sở y tế"
+                                                }
+                                            </Collapse.Panel>
+                                        </Collapse>
+                                    }
+                                </div>
                             </div>
+
                         </div>
                         <div className="content-down">
                             <div className="options">
@@ -155,7 +230,8 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 )}
-            </>
+                {/* <FloatButton.BackTop /> */}
+            </div>
         );
     }
 }

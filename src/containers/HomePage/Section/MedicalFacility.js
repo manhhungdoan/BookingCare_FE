@@ -29,6 +29,12 @@ class MedicalFacility extends Component {
         }
     };
 
+    handleViewMore = () => {
+        if (this.props.history) {
+            this.props.history.push(`/top-clinics/`);
+        }
+    }
+
     render() {
         let { dataClinics } = this.state;
         return (
@@ -36,7 +42,7 @@ class MedicalFacility extends Component {
                 <div className="section-container">
                     <div className="section-header">
                         <span className="title-section">Cơ sở y tế nổi bật</span>
-                        <button className="btn-section">Xem thêm</button>
+                        <button className="btn-section" onClick={() => this.handleViewMore()}  >Xem thêm</button>
                     </div>
                     <div className="section-body">
                         <Slider {...this.props.settings}>
@@ -53,7 +59,7 @@ class MedicalFacility extends Component {
                                                 className="bg-image section-medical-facility"
                                                 style={{ backgroundImage: `url(${item.image})` }}
                                             ></div>
-                                            <div className="clinic-name">{item.name}</div>
+                                            <div className="clinic-name font-weight-bold col-11">{item.name}</div>
                                         </div>
                                     );
                                 })}

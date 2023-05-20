@@ -11,6 +11,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { CRUD_ACTIONS, LANGUAGES } from '../../../utils';
 import { getDetailInforDoctor } from '../../../services/userService';
+import { Button } from 'antd';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -173,6 +174,7 @@ class ManageDoctor extends Component {
                 this.state.selectedClinic && this.state.selectedClinic.value ? this.state.selectedClinic.value : '',
             specialtyId: this.state.selectedSpecialty.value,
         });
+        console.log('check clinic id', this.state.selectedClinic)
     };
 
     handleChangeSelect = async (selectedOption) => {
@@ -276,8 +278,8 @@ class ManageDoctor extends Component {
     render() {
         let { hasOldData, listSpecialty } = this.state;
         return (
-            <div className="manage-doctor-container">
-                <div className="manage-doctor-title">
+            <div className="manage-doctor-container container">
+                <div className="manage-doctor-title text-primary">
                     <FormattedMessage id="admin.manage-doctor.title" />
                 </div>
                 <div className="more-infor">
@@ -407,9 +409,16 @@ class ManageDoctor extends Component {
                         value={this.state.contentMarkdown}
                     />
                 </div>
-                <button
-                    onClick={() => this.handleSaveContentMarkdown()}
+                {/* <button
+                   
                     className={hasOldData === true ? 'save-content-doctor' : 'create-content-doctor'}
+                >
+
+                </button> */}
+                <Button
+                    type='primary'
+                    style={{ marginTop: '16px' }}
+                    onClick={() => this.handleSaveContentMarkdown()}
                 >
                     {hasOldData === true ? (
                         <div>
@@ -420,7 +429,7 @@ class ManageDoctor extends Component {
                             <FormattedMessage id="admin.manage-doctor.add" />
                         </div>
                     )}
-                </button>
+                </Button>
             </div>
         );
     }

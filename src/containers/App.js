@@ -22,6 +22,10 @@ import CustomScrollbars from '../components/CustomScrollbars';
 import VerifyEmail from './Patient/VerifyEmail';
 import DetailSpecialty from './Patient/Specialty/DetailSpecialty';
 import DetailClinic from './Patient/Clinic/DetailClinic';
+import Search from './HomePage/Search';
+import AllSpecialty from './HomePage/Section/AllSpecialty';
+import AllDoctors from './HomePage/Section/AllDoctors';
+import AllClinics from './HomePage/Section/AllClinics';
 
 class App extends Component {
     handlePersistorState = () => {
@@ -54,8 +58,12 @@ class App extends Component {
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={'/doctor/'} component={userIsAuthenticated(Doctor)} />
-                                    
+
                                     <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.TOP_SPECIALTY} component={AllSpecialty} />
+                                    <Route path={path.TOP_DOCTORS} component={AllDoctors} />
+                                    <Route path={path.TOP_CLINIC} component={AllClinics} />
+                                    <Route path={path.SEARCH} component={Search} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.DETAIL_CLINIC} component={DetailClinic} />

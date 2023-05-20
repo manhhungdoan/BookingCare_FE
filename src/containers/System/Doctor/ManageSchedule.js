@@ -127,9 +127,9 @@ class ManageSchedule extends Component {
         });
 
         if (res && res.errCode === 0) {
-            toast.success('Save information succeed');
+            toast.success('Tạo thông tin bác sĩ thành công!');
         } else {
-            toast.error('Save information error');
+            toast.error('Tạo thông tin bác sĩ thất bại!');
         }
     };
 
@@ -139,7 +139,7 @@ class ManageSchedule extends Component {
 
         return (
             <div className="manage-schedule-container">
-                <div className="m-s-title">
+                <div className="m-s-title text-primary">
                     <FormattedMessage id="manage-schedule.title" />
                 </div>
                 <div className="container">

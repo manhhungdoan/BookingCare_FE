@@ -5,3 +5,14 @@
         color: #45c3d2;
     }
 }
+
+.ant-list {
+    .ant-list-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .ant-list-item:hover {
+        background-color: rgb(240, 240, 240) !important;
+    }
+}

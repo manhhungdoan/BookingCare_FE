@@ -24,6 +24,7 @@ const editUserService = (inputData) => {
     return axios.put('/api/edit-user', inputData);
 };
 
+
 const getAllCodeService = (inputType) => {
     return axios.get(`api/allcode?type=${inputType}`);
 };
@@ -98,6 +99,9 @@ const getAllPatientForDoctor = (data) => {
 const postSendRemedy = (data) => {
     return axios.post(`/api/send-remedy`, data);
 };
+const postSearch = (data) => {
+    return axios.post(`/api/search-home?keyword=${data}`);
+}
 export {
     handleLoginApi,
     getAllUsers,
@@ -123,4 +127,5 @@ export {
     getDetailClinicById,
     getAllPatientForDoctor,
     postSendRemedy,
+    postSearch,
 };

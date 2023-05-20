@@ -6,6 +6,7 @@ import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
 import DoctorExtraInfor from './DoctorExtraInfor';
+import { Avatar } from 'antd';
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class DetailDoctor extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
+    componentDidUpdate(prevProps, prevState, snapshot) { }
 
     render() {
         let { detailDoctor } = this.state;
@@ -51,8 +52,12 @@ class DetailDoctor extends Component {
                     <div className="intro-doctor">
                         <div
                             className="content-left"
-                            style={{ backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : ''})` }}
-                        ></div>
+                        // style={{ backgroundImage: `url(${detailDoctor.image ? detailDoctor.image : ''})` }}
+                        >
+                            <div className='image'>
+                                <img src={detailDoctor.image ? detailDoctor.image : ''} alt=''></img>
+                            </div>
+                        </div>
                         <div className="content-right">
                             <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                             <div className="down">
