@@ -156,7 +156,7 @@ class ManageClinic extends Component {
         return (
             <div className="manage-specialty-container container">
                 <div className="ms-title text-primary">Quản lý phòng khám</div>
-                <Collapse >
+                <Collapse defaultActiveKey={1}>
                     <Collapse.Panel className='font-weight-bold' header='Thêm phòng khám' key={1}>
                         <div className="add-new-specialty row">
                             <div className="col-6 form-group">

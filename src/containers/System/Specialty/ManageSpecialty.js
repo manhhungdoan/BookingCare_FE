@@ -145,7 +145,7 @@ class ManageSpecialty extends Component {
             <div className="manage-specialty-container container">
                 <div className="ms-title text-primary">Quản lý chuyên khoa</div>
 
-                <Collapse activeKey={1}>
+                <Collapse defaultActiveKey={1}>
                     <Collapse.Panel header='Thêm chuyên khoa' key={1}>
                         <div className="add-new-specialty row">
                             <div className="col-6 form-group">
